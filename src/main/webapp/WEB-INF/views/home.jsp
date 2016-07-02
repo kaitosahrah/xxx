@@ -80,7 +80,7 @@
 						<label> <input type="checkbox">Ghi nhớ </label>
 					</div>
 					<button class="btn btn-lg btn-primary" type="submit"
-						style="float: right;">Đăng nhập</button>
+						style="float: right;">Add</button>
 				</div>
 			</div>
 			<div class="form-group" style="margin-bottom: 0px;">

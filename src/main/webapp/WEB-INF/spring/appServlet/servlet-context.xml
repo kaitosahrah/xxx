@@ -11,16 +11,17 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
-		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven />
-
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<mvc:default-servlet-handler/>
+	<context:annotation-config />
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -29,6 +30,11 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.xaxa.controller" />
+	<context:component-scan base-package="com.xaxa.dao" />
+	<context:component-scan base-package="com.xaxa.dao.impl" />
+	<context:component-scan base-package="com.xaxa.filter" />
+	<context:component-scan base-package="com.xaxa.model" />
+	<context:component-scan base-package="com.xaxa.service" />
 	
 	<!-- MySQL data source -->
 	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
@@ -60,9 +66,10 @@
 	</beans:bean>
 	
 	
-	<beans:bean id="generate" class="com.xaxa.dao.Generate">
+	<beans:bean id="sessionObject" class="com.xaxa.sessionFactory.SessionFactoryObject">
 		<beans:property name="sessionFactory" ref="sessionFactory" />
 	</beans:bean>
+	<beans:bean id="userDao" class="com.xaxa.dao.impl.UserDao" scope="singleton"/>
 	<beans:bean id="userService" class="com.xaxa.service.UserService" scope="singleton"/>
 	
 	<beans:bean id="transactionManager"

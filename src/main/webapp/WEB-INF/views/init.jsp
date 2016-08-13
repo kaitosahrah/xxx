@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -17,9 +18,6 @@
 
 <script src="<c:url value="/resources/js/jquery-1.11.1.min.js" />" type="text/javascript"></script>
 <script src="<c:url value="/resources/js/bootstrap.min.js" />" type="text/javascript"></script>
-
-<script src="<c:url value="/resources/js/bootstrapValidator.min.js" />"></script>
-<link href="<c:url value="/resources/css/bootstrapValidator.min.css" />" rel="stylesheet">
 
 <script src="<c:url value="/resources/js/initPage.js" />"></script>
 
@@ -56,7 +54,7 @@
 
 	<div class="container" style="padding-top: 160px;">
 		<div class="intro">
-			<form action="" method="POST" class="form-horizontal col-lg-5 col-sm-5 col-md-5" role="form"
+			<form:form action="login" modelAttribute='user' method="post" class="form-horizontal col-lg-5 col-sm-5 col-md-5" role="form"
 				style="padding-top: 90px; padding-bottom: 0px;" id="form-dang-ky">
 				<h4>Website ví dụ</h4>
 				<h4>Ví dụ website</h4>
@@ -64,13 +62,10 @@
 					style="margin-left: 0px; margin-right: 0px; margin-bottom: 0px;">
 					<div class="input-group">
 						<span class="input-group-addon" id="icon-taikhoan" ><span
-							class="glyphicon glyphicon-user"></span></span> <input type="text"
-							name="taiKhoan" id="taiKhoanDangKy" class="form-control input-lg"
-							placeholder="Tài khoản" data-bv-notempty="true"
-							data-bv-notempty-message="Tài khoản phải khác rỗng"
-							data-bv-stringlength="true" data-bv-stringlength-min="6"
-							data-bv-stringlength-max="20"
-							data-bv-stringlength-message="Tài khoản phải ít nhất là 6 ký tự và nhiều nhất là 20 ký tự">
+							class="glyphicon glyphicon-user"></span></span> 
+
+							<form:input type="text" path='username' name="username" id="username" class="form-control input-lg"
+							placeholder="Tài khoản"  />
 				
 					</div>
 					<div style="color: #a94442; font-size: 85%; padding-top: 5px;">
@@ -82,13 +77,8 @@
 					style="margin-left: 0px; margin-right: 0px; margin-bottom: 0px;">
 					<div class="input-group">
 						<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                          <input type="password" name="matKhau" id="matKhau" class="form-control input-lg"  placeholder="Mật khẩu" 
-                            data-bv-notempty="true"
-                            data-bv-notempty-message="Tài khoản phải khác rỗng"
-                            data-bv-stringlength="true"
-                            data-bv-stringlength-min="6"
-                            data-bv-stringlength-max="20"
-                            data-bv-stringlength-message="Tài khoản phải ít nhất là 6 ký tự và nhiều nhất là 20 ký tự">
+                          <form:input type="password" path='password' name="password" id="password" class="form-control input-lg"  
+                          placeholder="Mật khẩu"  />
 					</div>
 					<div style="color: #a94442;font-size: 85%;padding-top: 5px;">
  						<div id="thongbao_email"></div>
@@ -99,12 +89,13 @@
                     <a href="Quen-Mat-Khau.html">Bạn đã quên mật khẩu?</a>
                 </div>
 				<div class="form-group" style="margin-left: 0px; margin-right: 0px;">
+					
 					<input id="btn-tao-tai-khoan" type="submit" class="btn btn-default pull-right btn-green"
 						 value="Đăng nhập"/>
 				</div>
 
 
-			</form>
+			</form:form>
 			<div class="carousel-container pull-right col-lg-7 col-md-7 col-sm-7">
 				<div id="carousel-example-generic" class="carousel slide row"
 					data-ride="carousel">

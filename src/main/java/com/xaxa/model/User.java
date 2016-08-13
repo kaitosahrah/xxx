@@ -25,7 +25,6 @@ public class User implements java.io.Serializable {
 	}
 
 	@Id
-
 	@Column(name = "username", unique = true, nullable = false, length = 100)
 	public String getUsername() {
 		return this.username;
@@ -44,4 +43,9 @@ public class User implements java.io.Serializable {
 		this.password = password;
 	}
 
+	@Override
+	public String toString() {
+		return "User [username=" + username + "]";
+	}
+	
 }
